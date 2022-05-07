@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
   const plugins = () => {
     const base = [
       new HtmlWebpackPlugin({
-        template: './index.html'
+        template: './index.pug',
       }),
       new CopyPlugin({
         patterns: [
@@ -86,7 +86,12 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
-        }, {
+        },
+        {
+          test: /\.(pug)$/,
+          loader: 'pug-loader'
+        },
+        {
           test: /\.(png|svg|jpe?g|gif)$/i,
           use: [
             {
